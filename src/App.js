@@ -53,7 +53,7 @@ const SignInForm = () => {
 		<div>
 			<div className="loginBox">
 				<h1 style={{ fontSize: '38px', ...classes.fontname }}>
-					Enter Track Id to get dash dash dash
+					Enter Track Id to get Prediction
 				</h1>
 				<form
 					onSubmit={onSubmit}
