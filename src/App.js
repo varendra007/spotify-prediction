@@ -26,7 +26,18 @@ const SignInForm = () => {
 
 	const onSubmit = (event) => {
 		event.preventDefault();
-
+		var axios = require('axios');
+		var config = {
+			url: `http://10.196.9.106/predict/${trackId}`,
+			method: 'get',
+		};
+		axios(config)
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 		// client server logic to sign in
 	};
 	return (
