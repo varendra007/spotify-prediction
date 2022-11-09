@@ -23,7 +23,8 @@ const classes = {
 
 const SignInForm = () => {
 	const [trackId, setTrackId] = React.useState('');
-
+	const [prediction, setPrediction] = React.useState(null);
+	const [err, setErr] = React.useState('');
 	const onSubmit = (event) => {
 		event.preventDefault();
 		var axios = require('axios');
@@ -34,12 +35,20 @@ const SignInForm = () => {
 		axios(config)
 			.then((res) => {
 				console.log(res);
+				setPrediction(res.data.prediction);
+				setErr('');
 			})
 			.catch((err) => {
+				setErr('Song does not exist');
 				console.log(err);
 			});
 		// client server logic to sign in
 	};
+	React.useEffect(() => {
+		setTimeout(() => {
+			setPrediction(null);
+		}, 20000);
+	}, [prediction]);
 	return (
 		<div>
 			<div className="loginBox">
@@ -74,6 +83,19 @@ const SignInForm = () => {
 					</button>
 					<br />
 				</form>
+				<>
+					{prediction === 1 && (
+						<p style={{ color: 'lightgreen' }}>
+							Response: Song might get in the top list of billbaord
+						</p>
+					)}
+					{prediction === 0 && (
+						<p style={{ color: 'red' }}>
+							Response: Chances of given song is too low to get in top rank
+						</p>
+					)}
+					{err && <p style={{ color: 'red' }}>{err}</p>}
+				</>
 			</div>
 		</div>
 	);
