@@ -29,7 +29,7 @@ const SignInForm = () => {
 		event.preventDefault();
 		var axios = require('axios');
 		var config = {
-			url: `http://10.196.9.106/predict/${trackId}`,
+			url: `http://10.196.9.181/predict/${trackId}`,
 			method: 'get',
 		};
 		axios(config)
